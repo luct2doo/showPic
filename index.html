@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片库</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <style>
+        li {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+        a:hover {
+            color: lightpink;
+        }
+        img {
+            border: 0;
+            width: 612px;
+            height: 612px;
+        }
+        #app {
+            width: 100%;
+            background-color: #e3e3e3;
+            display: flex;
+        }
+        .placeholder {
+            flex: 1;
+        }
+        .lists {
+            flex: 2;
+            padding: 200px 200px 200px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="placeholder">
+            <img :src="'./images/' + show_pic + '.jpg'" :alt="'pic_' + show_pic" @click.prevent="show_pic='placeholder'" />
+        </div>
+        <div class="lists">
+            <ul>
+                <li v-for="(n, index) in 6">
+                    <a :href="'./images/0' + n + '.jpg'" @click.prevent="changePic(index)">{{ '0' + n }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                show_pic: 'placeholder'
+            },
+            methods: {
+                changePic (index) {
+                    this.show_pic = '0' + (index + 1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
